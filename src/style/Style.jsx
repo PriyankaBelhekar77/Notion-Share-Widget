@@ -16,6 +16,7 @@ export const Widget = styled(Box)(({ theme }) => ({
   left: 0,
   top: 50,
   overflow: "hidden",
+  backgroundColor: "#FFFF",
   border: `1px solid #e5e7eb`,
   borderRadius: 8,
   boxShadow: `0px 10px 15px -3px rgba(0, 0, 0, 0.1),

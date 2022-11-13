@@ -66,7 +66,7 @@ const ShareWidget = forwardRef(function (props, ref) {
             <Switch color="default" />
           </Box>
         </WidgetHeader>
-        <WidgetBody sx={{ overflowY: "auto" }}>
+        <WidgetBody>
           <InviteBox onClick={() => setShowUserSelectModal(true)}>
             <div className="test11">People, emails, groups</div>
             <div className="test12">Invite</div>
