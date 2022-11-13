@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import QuestionMarkIcon from "../../icons/QuestionMarkIcon";
@@ -15,6 +15,9 @@ import Dropdown from "../Dropdown";
 import DisplayUsers from "./DisplayUsers";
 import DisplayGroups from "./DisplayGroups";
 
+const KEY_ENTER = "Enter";
+const KEY_UP = "keyup";
+
 const UserWidget = ({ getInvitedUsersOrGrops }) => {
   const [selectedGroupOrUser, setSelectedGroupOrUser] = useState([]);
   const [searchUserOrGroup, setSearchUserOrGroup] = useState("");
@@ -23,6 +26,22 @@ const UserWidget = ({ getInvitedUsersOrGrops }) => {
   const [groupFilterResult, setGroupFilterResult] = useState([]);
 
   const getAccessRights = (access_type) => setAccessRights(access_type);
+
+  useEffect(() => {
+    const handleEnterKeyEvent = (event) => {
+      if (event.key === KEY_ENTER) {
+        if (userFilterResult.length) {
+          handleUserOrGroupClick(userFilterResult[0]);
+        } else if (groupFilterResult.length) {
+          handleUserOrGroupClick(groupFilterResult[0]);
+        }
+        setSearchUserOrGroup("");
+      }
+    };
+    document.addEventListener(KEY_UP, handleEnterKeyEvent);
+
+    return () => document.removeEventListener(KEY_UP, handleEnterKeyEvent);
+  });
 
   const handlePillBtnClick = (user) => {
     const removeUser = [...selectedGroupOrUser].filter(
@@ -57,24 +76,30 @@ const UserWidget = ({ getInvitedUsersOrGrops }) => {
     setSearchUserOrGroup(event.target.value);
   };
 
+  useEffect(() => {
+    if (searchUserOrGroup === "") {
+      setUserFilterResult([]);
+      setGroupFilterResult([]);
+    }
+  }, [searchUserOrGroup]);
+
   const handleInputKeyUp = (event) => {
-    if(searchUserOrGroup !== "") {
+    if (searchUserOrGroup !== "") {
       const filterUser = [...users].filter((data) => {
         return (
-          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !== -1
+          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !==
+          -1
         );
       });
-  
+
       const filterGroup = [...groups].filter((data) => {
         return (
-          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !== -1
+          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !==
+          -1
         );
       });
       setUserFilterResult(filterUser);
       setGroupFilterResult(filterGroup);
-    } else {
-      setUserFilterResult([]);
-      setGroupFilterResult([]);
     }
   };
 
@@ -139,27 +164,29 @@ const UserWidget = ({ getInvitedUsersOrGrops }) => {
         </Box>
       </WidgetHeader>
       <WidgetBody sx={{ padding: "10px" }}>
-        {userFilterResult.length ? (
-          <DisplayUsers
-            users={userFilterResult}
-            handleUserOrGroupClick={handleUserOrGroupClick}
-          />
+        {userFilterResult.length || groupFilterResult.length ? (
+          userFilterResult.length ? (
+            <DisplayUsers
+              users={userFilterResult}
+              handleUserOrGroupClick={handleUserOrGroupClick}
+            />
+          ) : (
+            <DisplayGroups
+              groups={groupFilterResult}
+              handleUserOrGroupClick={handleUserOrGroupClick}
+            />
+          )
         ) : (
-          <DisplayUsers
-            users={users}
-            handleUserOrGroupClick={handleUserOrGroupClick}
-          />
-        )}
-        {groupFilterResult.length ? (
-          <DisplayUsers
-            groups={groupFilterResult}
-            handleUserOrGroupClick={handleUserOrGroupClick}
-          />
-        ) : (
-          <DisplayGroups
-            groups={groups}
-            handleUserOrGroupClick={handleUserOrGroupClick}
-          />
+          <>
+            <DisplayUsers
+              users={users}
+              handleUserOrGroupClick={handleUserOrGroupClick}
+            />
+            <DisplayGroups
+              groups={groups}
+              handleUserOrGroupClick={handleUserOrGroupClick}
+            />
+          </>
         )}
       </WidgetBody>
       <WidgetFooter>
