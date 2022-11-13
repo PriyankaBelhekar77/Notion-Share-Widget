@@ -15,6 +15,7 @@ const theme = createTheme({
       textTransform: "none",
     },
   },
+  spacing: 1,
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
