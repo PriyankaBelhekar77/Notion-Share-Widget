@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import QuestionMarkIcon from "../../icons/QuestionMarkIcon";
 import TextField from "@mui/material/TextField";
 import {
-  Widget,
+  UserWidgetStyle,
   WidgetHeader,
   WidgetBody,
   WidgetFooter,
@@ -104,7 +104,7 @@ const UserWidget = ({ getInvitedUsersOrGrops }) => {
   };
 
   return (
-    <Widget>
+    <UserWidgetStyle>
       <WidgetHeader>
         <Box
           sx={{
@@ -195,7 +195,7 @@ const UserWidget = ({ getInvitedUsersOrGrops }) => {
           <span className="share-web">Learn about sharing</span>
         </Links>
       </WidgetFooter>
-    </Widget>
+    </UserWidgetStyle>
   );
 };
 
