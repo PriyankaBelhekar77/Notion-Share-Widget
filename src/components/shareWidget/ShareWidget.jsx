@@ -12,6 +12,8 @@ import {
   WidgetFooter,
   InviteBox,
   Links,
+  InviteText,
+  InviteSubText,
 } from '../../style/Style';
 import InvitedUser from './InvitedUser';
 
@@ -23,7 +25,7 @@ const ShareWidget = forwardRef((props, ref) => {
     const editInvitedUsersOrGroups = [...invitedUsersOrGroups];
     selectedUsers.forEach((user) => {
       const editUserIndex = editInvitedUsersOrGroups.findIndex(
-        (val) => val.id === user.id,
+        (val) => val.id === user.id
       );
       if (editUserIndex === -1) {
         editInvitedUsersOrGroups.push(user);
@@ -32,15 +34,25 @@ const ShareWidget = forwardRef((props, ref) => {
       }
     });
 
+    editInvitedUsersOrGroups.sort((a, b) => {
+      if (a.type < b.type) {
+        return -1;
+      }
+      if (b.type < a.type) {
+        return 1;
+      }
+      return 0;
+    });
+
     setInvitedUsersOrGroups(editInvitedUsersOrGroups);
     setShowUserSelectModal(false);
   };
 
-  const copyLink = () => { 
+  const copyLink = () => {
     props.closeWidget(false);
     // eslint-disable-next-line no-restricted-globals
     navigator.clipboard.writeText(location.href);
-  }
+  };
 
   return (
     <Box ref={ref} sx={{ position: 'relative' }}>
@@ -62,20 +74,20 @@ const ShareWidget = forwardRef((props, ref) => {
                 padding: '0 16px',
               }}
             >
-              <span className="share-title">Share to web</span>
-              <span className="share-sub-title">
+              <span className='share-title'>Share to web</span>
+              <span className='share-sub-title'>
                 Publish and share link with anyone
               </span>
             </Box>
           </Box>
           <Box sx={{ justifyContent: 'flex-end' }}>
-            <Switch color="default" />
+            <Switch color='default' />
           </Box>
         </WidgetHeader>
         <WidgetBody>
           <InviteBox onClick={() => setShowUserSelectModal(true)}>
-            <div className="test11">People, emails, groups</div>
-            <div className="test12">Invite</div>
+            <InviteSubText>People, emails, groups</InviteSubText>
+            <InviteText>Invite</InviteText>
           </InviteBox>
           {invitedUsersOrGroups.length ? (
             <Box
@@ -94,11 +106,11 @@ const ShareWidget = forwardRef((props, ref) => {
         <WidgetFooter>
           <Links>
             <QuestionMarkIcon />
-            <span className="share-web">Learn about sharing</span>
+            <span className='share-web'>Learn about sharing</span>
           </Links>
           <Links onClick={copyLink}>
             <LinkIcon />
-            <span className="share-link">Copy link</span>
+            <span className='share-link'>Copy link</span>
           </Links>
         </WidgetFooter>
       </Widget>

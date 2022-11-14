@@ -2,6 +2,11 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
+export const ShareContainer = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+}));
+
 export const Container = styled(Box)(({ theme }) => ({
   left: 124,
   top: 124,
@@ -13,7 +18,8 @@ export const Container = styled(Box)(({ theme }) => ({
 
 export const Widget = styled(Box)(({ theme }) => ({
   width: 512,
-  height: 262,
+  minHeight: 262,
+  height: 'maxContent',
   left: 0,
   top: 50,
   backgroundColor: '#FFFF',
@@ -50,8 +56,7 @@ export const UserWidgetHeader = styled(WidgetHeader)(({ theme }) => ({
 export const WidgetBody = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
   width: '100%',
-  height: 134,
-  overflowY: 'auto',
+  minHeight: 134,
 }));
 
 export const WidgetFooter = styled(Box)(({ theme }) => ({
@@ -102,7 +107,6 @@ export const SelectedUser = styled(Box)(({ theme }) => ({
 }));
 
 export const InputBox = styled(Box)(({ theme }) => ({
-  outline: '0.5px solid',
   gap: 10,
   minHeight: 30,
   height: 'max-content',
@@ -112,4 +116,42 @@ export const InputBox = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(12, 16),
   userSelect: 'none',
+}));
+
+export const InviteText = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: 8,
+  width: 74,
+  height: 42,
+  background: '#f9fafb',
+  border: '1px solid #d1d5db',
+  borderRadius: '0px 6px 6px 0px',
+}));
+
+export const InviteSubText = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  padding: '0px 0px 0px 12px',
+  width: '488px',
+  height: '42px',
+  background: '#ffffff',
+  border: '1px solid #d1d5db',
+  boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)',
+  borderRadius: '6px 0px 0px 6px',
+}));
+
+export const PillButton = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: theme.spacing(0, 5),
+  width: 'maxContent',
+  height: 28,
+  background: '#e5e7eb',
+  borderRadius: 4,
 }));
