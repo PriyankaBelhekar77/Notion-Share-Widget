@@ -36,6 +36,12 @@ const ShareWidget = forwardRef((props, ref) => {
     setShowUserSelectModal(false);
   };
 
+  const copyLink = () => { 
+    props.closeWidget(false);
+    // eslint-disable-next-line no-restricted-globals
+    navigator.clipboard.writeText(location.href);
+  }
+
   return (
     <Box ref={ref} sx={{ position: 'relative' }}>
       <Widget>
@@ -90,7 +96,7 @@ const ShareWidget = forwardRef((props, ref) => {
             <QuestionMarkIcon />
             <span className="share-web">Learn about sharing</span>
           </Links>
-          <Links>
+          <Links onClick={copyLink}>
             <LinkIcon />
             <span className="share-link">Copy link</span>
           </Links>

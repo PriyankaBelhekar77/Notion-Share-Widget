@@ -67,6 +67,10 @@ export const WidgetFooter = styled(Box)(({ theme }) => ({
 }));
 
 export const Links = styled(Box)(({ theme }) => ({
+  ':hover': {
+    backgroundColor: 'rgba(17, 24, 39, 0.04)',
+  },
+  cursor: 'pointer',
   display: 'flex',
   flexDirection: 'col',
   padding: theme.spacing(10, 10),

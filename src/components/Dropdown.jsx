@@ -29,6 +29,7 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
   return (
     <Box ref={dropDownParentRef}>
       <Button
+        sx={{ width: 'max-content' }}
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
