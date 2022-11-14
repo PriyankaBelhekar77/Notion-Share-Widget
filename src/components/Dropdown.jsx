@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import DownArrowIcon from "../icons/DownArrowIcon";
+import { Box } from "@mui/material";
 
 function Dropdown({ defaultAccessRight, getAccessRights }) {
   const options = ["Full access", "Can edit", "Can view", "No access"];
@@ -26,7 +27,7 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
   };
 
   return (
-    <div ref={dropDownParentRef}>
+    <Box ref={dropDownParentRef}>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -56,7 +57,7 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Box>
   );
 }
 

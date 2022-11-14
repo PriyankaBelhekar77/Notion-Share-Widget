@@ -24,6 +24,11 @@ export const Widget = styled(Box)(({ theme }) => ({
 }));
 
 export const UserWidgetStyle = styled(Widget)(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  minHeight: 262,
+  height: "max-content",
   position: "absolute",
   top: 0
 }));
@@ -36,6 +41,10 @@ export const WidgetHeader = styled(Box)(({ theme }) => ({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
+}));
+
+export const UserWidgetHeader = styled(WidgetHeader)(({ theme }) => ({
+  height: "max-content"
 }));
 
 export const WidgetBody = styled(Box)(({ theme }) => ({
@@ -86,4 +95,17 @@ export const SelectedUser = styled(Box)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-between",
   padding: theme.spacing(0, 16),
+}));
+
+export const InputBox = styled(Box)(({ theme }) => ({
+  outline: '0.5px solid',
+  gap: 10,
+  minHeight: 30,
+  height: 'max-content',
+  display: "flex",
+  borderRadius: 8,
+  width: "100%",
+  alignItems: "center",
+  padding: theme.spacing(12, 16),
+  userSelect: "none",
 }));
