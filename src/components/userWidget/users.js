@@ -13,6 +13,13 @@ export const users = [
     type: "user",
     access_type: ""
   },
+  {
+    name: "Priyanka Belhekar",
+    email: "priyanka@gmail.com",
+    id: "890",
+    type: "user",
+    access_type: ""
+  },
 ];
 
 export const groups = [

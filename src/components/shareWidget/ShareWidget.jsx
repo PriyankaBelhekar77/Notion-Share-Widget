@@ -37,7 +37,7 @@ const ShareWidget = forwardRef(function (props, ref) {
   };
 
   return (
-    <Box ref={ref}>
+    <Box ref={ref} sx={{ position: 'relative' }}>
       <Widget>
         <WidgetHeader>
           <Box
