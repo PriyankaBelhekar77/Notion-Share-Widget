@@ -1,12 +1,12 @@
-import { useState, useRef } from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import DownArrowIcon from "../icons/DownArrowIcon";
-import { Box } from "@mui/material";
+import { useState, useRef } from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/material';
+import DownArrowIcon from '../icons/DownArrowIcon';
 
 function Dropdown({ defaultAccessRight, getAccessRights }) {
-  const options = ["Full access", "Can edit", "Can view", "No access"];
+  const options = ['Full access', 'Can edit', 'Can view', 'No access'];
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -30,9 +30,9 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
     <Box ref={dropDownParentRef}>
       <Button
         id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
+        aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={open ? 'true' : undefined}
         endIcon={<DownArrowIcon />}
         onClick={handleClick}
       >
@@ -44,7 +44,7 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          'aria-labelledby': 'basic-button',
         }}
       >
         {options.map((option, index) => (

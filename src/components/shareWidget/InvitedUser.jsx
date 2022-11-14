@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { User, SelectedUser } from "../../style/Style";
-import Dropdown from "../Dropdown";
-import WadeAvtar from "../../icons/avtar/WadeAvtar";
+import { useState } from 'react';
+import { User, SelectedUser } from '../../style/Style';
+import Dropdown from '../Dropdown';
+import WadeAvtar from '../../icons/avtar/WadeAvtar';
 
 function InvitedUser({ user, index }) {
-  const [accessRights, setAccessRights] = useState("");
+  const [accessRights, setAccessRights] = useState('');
   const getAccessRights = (access_type) => setAccessRights(access_type);
 
   return (
     <SelectedUser>
       <User>
-        {user.type === "user" ? (
+        {user.type === 'user' ? (
           <WadeAvtar />
         ) : (
           <div className="group-icon">{user.name.substring(0, 1)}</div>
@@ -21,7 +21,7 @@ function InvitedUser({ user, index }) {
       <Dropdown
         getAccessRights={getAccessRights}
         defaultAccessRight={
-          accessRights !== "" ? accessRights : user.access_type
+          accessRights !== '' ? accessRights : user.access_type
         }
       />
     </SelectedUser>

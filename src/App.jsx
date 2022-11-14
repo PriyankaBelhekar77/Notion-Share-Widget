@@ -1,4 +1,4 @@
-import Share from "./components/share/Share";
+import Share from './components/share/Share';
 
 function App() {
   return (

@@ -1,10 +1,10 @@
-import { forwardRef, useState } from "react";
-import Box from "@mui/material/Box";
-import Switch from "@mui/material/Switch";
-import QuestionMarkIcon from "../../icons/QuestionMarkIcon";
-import LinkIcon from "../../icons/LinkIcon";
-import WebIcon from "../../icons/WebIcon";
-import UserWidget from "../userWidget/UserWidget";
+import { forwardRef, useState } from 'react';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import QuestionMarkIcon from '../../icons/QuestionMarkIcon';
+import LinkIcon from '../../icons/LinkIcon';
+import WebIcon from '../../icons/WebIcon';
+import UserWidget from '../userWidget/UserWidget';
 import {
   Widget,
   WidgetHeader,
@@ -12,10 +12,10 @@ import {
   WidgetFooter,
   InviteBox,
   Links,
-} from "../../style/Style";
-import InvitedUser from "./InvitedUser";
+} from '../../style/Style';
+import InvitedUser from './InvitedUser';
 
-const ShareWidget = forwardRef(function (props, ref) {
+const ShareWidget = forwardRef((props, ref) => {
   const [showUserSelectModal, setShowUserSelectModal] = useState(false);
   const [invitedUsersOrGroups, setInvitedUsersOrGroups] = useState([]);
 
@@ -23,7 +23,7 @@ const ShareWidget = forwardRef(function (props, ref) {
     const editInvitedUsersOrGroups = [...invitedUsersOrGroups];
     selectedUsers.forEach((user) => {
       const editUserIndex = editInvitedUsersOrGroups.findIndex(
-        (val) => val.id === user.id
+        (val) => val.id === user.id,
       );
       if (editUserIndex === -1) {
         editInvitedUsersOrGroups.push(user);
@@ -42,18 +42,18 @@ const ShareWidget = forwardRef(function (props, ref) {
         <WidgetHeader>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "0 16px",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              padding: '0 16px',
             }}
           >
             <WebIcon />
             <Box
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "0 16px",
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '0 16px',
               }}
             >
               <span className="share-title">Share to web</span>
@@ -62,7 +62,7 @@ const ShareWidget = forwardRef(function (props, ref) {
               </span>
             </Box>
           </Box>
-          <Box sx={{ justifyContent: "flex-end" }}>
+          <Box sx={{ justifyContent: 'flex-end' }}>
             <Switch color="default" />
           </Box>
         </WidgetHeader>
@@ -73,17 +73,15 @@ const ShareWidget = forwardRef(function (props, ref) {
           </InviteBox>
           {invitedUsersOrGroups.length ? (
             <Box
-              sx={{ width: "100%", display: "flex", flexDirection: "column" }}
+              sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}
             >
-              {invitedUsersOrGroups.map((user, index) => {
-                return (
-                  <InvitedUser
-                    key={"invited_" + user.id}
-                    user={user}
-                    index={index}
-                  />
-                );
-              })}
+              {invitedUsersOrGroups.map((user, index) => (
+                <InvitedUser
+                  key={`invited_${user.id}`}
+                  user={user}
+                  index={index}
+                />
+              ))}
             </Box>
           ) : null}
         </WidgetBody>
