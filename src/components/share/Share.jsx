@@ -54,7 +54,7 @@ function Share() {
         >
           Share
         </Button>
-        {showShareWidget && <ShareWidget ref={shareWidgetRef} />}
+        {showShareWidget && <ShareWidget ref={shareWidgetRef} closeWidget={setShowShareWidget} />}
       </Container>
     </div>
   );
