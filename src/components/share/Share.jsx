@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import ShareIcon from '@mui/icons-material/Share';
 import { useEffect, useRef, useState } from 'react';
 import ShareWidget from '../shareWidget/ShareWidget';
-import { Container } from '../../style/Style';
+import { Container, ShareContainer } from '../../style/Style';
 
 const KEY_ESC = 'Escape';
 const KEY_UP = 'keyup';
@@ -44,7 +44,7 @@ function Share() {
   });
 
   return (
-    <div className="parent-share-container">
+    <ShareContainer>
       <Container>
         <Button
           variant="contained"
@@ -54,9 +54,11 @@ function Share() {
         >
           Share
         </Button>
-        {showShareWidget && <ShareWidget ref={shareWidgetRef} closeWidget={setShowShareWidget} />}
+        {showShareWidget && (
+          <ShareWidget ref={shareWidgetRef} closeWidget={setShowShareWidget} />
+        )}
       </Container>
-    </div>
+    </ShareContainer>
   );
 }
 

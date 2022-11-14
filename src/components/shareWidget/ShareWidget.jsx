@@ -12,6 +12,8 @@ import {
   WidgetFooter,
   InviteBox,
   Links,
+  InviteText,
+  InviteSubText,
 } from '../../style/Style';
 import InvitedUser from './InvitedUser';
 
@@ -36,11 +38,11 @@ const ShareWidget = forwardRef((props, ref) => {
     setShowUserSelectModal(false);
   };
 
-  const copyLink = () => { 
+  const copyLink = () => {
     props.closeWidget(false);
     // eslint-disable-next-line no-restricted-globals
     navigator.clipboard.writeText(location.href);
-  }
+  };
 
   return (
     <Box ref={ref} sx={{ position: 'relative' }}>
@@ -74,8 +76,8 @@ const ShareWidget = forwardRef((props, ref) => {
         </WidgetHeader>
         <WidgetBody>
           <InviteBox onClick={() => setShowUserSelectModal(true)}>
-            <div className="test11">People, emails, groups</div>
-            <div className="test12">Invite</div>
+            <InviteSubText>People, emails, groups</InviteSubText>
+            <InviteText>Invite</InviteText>
           </InviteBox>
           {invitedUsersOrGroups.length ? (
             <Box
