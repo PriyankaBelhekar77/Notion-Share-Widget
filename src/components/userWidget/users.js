@@ -4,21 +4,21 @@ export const users = [
     email: 'wadecooper@oslash.com',
     id: '123',
     type: 'user',
-    access_type: '',
+    accessType: '',
   },
   {
     name: 'Arelen Mccoy',
     email: 'arlenmaccoy@oslash.com',
     id: '234',
     type: 'user',
-    access_type: '',
+    accessType: '',
   },
   {
     name: 'Priyanka Belhekar',
     email: 'priyanka@gmail.com',
     id: '890',
     type: 'user',
-    access_type: '',
+    accessType: '',
   },
 ];
 
@@ -28,13 +28,13 @@ export const groups = [
     additional_info: '25 Workspace members',
     id: '345',
     type: 'group',
-    access_type: '',
+    accessType: '',
   },
   {
     name: 'Engineering',
     additional_info: '15 Workspace members',
     id: '456',
     type: 'group',
-    access_type: '',
+    accessType: '',
   },
 ];

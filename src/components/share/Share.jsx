@@ -20,7 +20,9 @@ function Share() {
   useEffect(() => {
     const handleEscKeyEvent = (event) => {
       if (event.key === KEY_ESC) {
-        showShareWidget && setShowShareWidget(false);
+        if (showShareWidget) {
+          setShowShareWidget(false);
+        }
       }
     };
     document.addEventListener(KEY_UP, handleEscKeyEvent);
@@ -35,7 +37,9 @@ function Share() {
         && !shareWidgetRef.current?.contains(event.target)
         && event.target.localName !== 'li'
       ) {
-        showShareWidget && setShowShareWidget(false);
+        if (showShareWidget) {
+          setShowShareWidget(false);
+        }
       }
     };
     document.addEventListener(MOUSE_UP, handleOutsideClick);

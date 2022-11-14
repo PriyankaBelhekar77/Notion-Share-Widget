@@ -1,6 +1,7 @@
 import { forwardRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
+import PropTypes from 'prop-types';
 import QuestionMarkIcon from '../../icons/QuestionMarkIcon';
 import LinkIcon from '../../icons/LinkIcon';
 import WebIcon from '../../icons/WebIcon';
@@ -25,12 +26,12 @@ const ShareWidget = forwardRef((props, ref) => {
     const editInvitedUsersOrGroups = [...invitedUsersOrGroups];
     selectedUsers.forEach((user) => {
       const editUserIndex = editInvitedUsersOrGroups.findIndex(
-        (val) => val.id === user.id
+        (val) => val.id === user.id,
       );
       if (editUserIndex === -1) {
         editInvitedUsersOrGroups.push(user);
       } else {
-        editInvitedUsersOrGroups[editUserIndex].access_type = user.access_type;
+        editInvitedUsersOrGroups[editUserIndex].accessType = user.accessType;
       }
     });
 
@@ -74,14 +75,14 @@ const ShareWidget = forwardRef((props, ref) => {
                 padding: '0 16px',
               }}
             >
-              <span className='share-title'>Share to web</span>
-              <span className='share-sub-title'>
+              <span className="share-title">Share to web</span>
+              <span className="share-sub-title">
                 Publish and share link with anyone
               </span>
             </Box>
           </Box>
           <Box sx={{ justifyContent: 'flex-end' }}>
-            <Switch color='default' />
+            <Switch color="default" />
           </Box>
         </WidgetHeader>
         <WidgetBody>
@@ -106,11 +107,11 @@ const ShareWidget = forwardRef((props, ref) => {
         <WidgetFooter>
           <Links>
             <QuestionMarkIcon />
-            <span className='share-web'>Learn about sharing</span>
+            <span className="share-web">Learn about sharing</span>
           </Links>
           <Links onClick={copyLink}>
             <LinkIcon />
-            <span className='share-link'>Copy link</span>
+            <span className="share-link">Copy link</span>
           </Links>
         </WidgetFooter>
       </Widget>
@@ -120,5 +121,9 @@ const ShareWidget = forwardRef((props, ref) => {
     </Box>
   );
 });
+
+ShareWidget.propTypes = {
+  closeWidget: PropTypes.func.isRequired,
+};
 
 export default ShareWidget;
