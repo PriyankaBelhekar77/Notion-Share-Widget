@@ -1,12 +1,12 @@
-import Button from "@mui/material/Button";
-import ShareIcon from "@mui/icons-material/Share";
-import ShareWidget from "../shareWidget/ShareWidget";
-import { useEffect, useRef, useState } from "react";
-import { Container } from "../../style/Style";
+import Button from '@mui/material/Button';
+import ShareIcon from '@mui/icons-material/Share';
+import { useEffect, useRef, useState } from 'react';
+import ShareWidget from '../shareWidget/ShareWidget';
+import { Container } from '../../style/Style';
 
-const KEY_ESC = "Escape";
-const KEY_UP = "keyup";
-const MOUSE_UP = "mouseup";
+const KEY_ESC = 'Escape';
+const KEY_UP = 'keyup';
+const MOUSE_UP = 'mouseup';
 
 function Share() {
   const [showShareWidget, setShowShareWidget] = useState(false);
@@ -31,9 +31,9 @@ function Share() {
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (
-        event.target !== shareBtnRef.current &&
-        !shareWidgetRef.current?.contains(event.target) &&
-        event.target.localName !== "li"
+        event.target !== shareBtnRef.current
+        && !shareWidgetRef.current?.contains(event.target)
+        && event.target.localName !== 'li'
       ) {
         showShareWidget && setShowShareWidget(false);
       }
@@ -44,21 +44,19 @@ function Share() {
   });
 
   return (
-    <>
-      <div className="parent-share-container">
-        <Container>
-          <Button
-            variant="contained"
-            endIcon={<ShareIcon />}
-            onClick={handleShareBtnClick}
-            ref={shareBtnRef}
-          >
-            Share
-          </Button>
-          {showShareWidget && <ShareWidget ref={shareWidgetRef} />}
-        </Container>
-      </div>
-    </>
+    <div className="parent-share-container">
+      <Container>
+        <Button
+          variant="contained"
+          endIcon={<ShareIcon />}
+          onClick={handleShareBtnClick}
+          ref={shareBtnRef}
+        >
+          Share
+        </Button>
+        {showShareWidget && <ShareWidget ref={shareWidgetRef} />}
+      </Container>
+    </div>
   );
 }
 
