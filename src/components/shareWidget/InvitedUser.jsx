@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { User, SelectedUser } from '../../style/Style';
 import Dropdown from '../Dropdown';
 import WadeAvtar from '../../icons/avtar/WadeAvtar';
 
-function InvitedUser({ user, index }) {
+function InvitedUser({ user }) {
   const [accessRights, setAccessRights] = useState('');
-  const getAccessRights = (access_type) => setAccessRights(access_type);
+  const getAccessRights = (accessType) => setAccessRights(accessType);
 
   return (
     <SelectedUser>
@@ -21,11 +22,19 @@ function InvitedUser({ user, index }) {
       <Dropdown
         getAccessRights={getAccessRights}
         defaultAccessRight={
-          accessRights !== '' ? accessRights : user.access_type
+          accessRights !== '' ? accessRights : user.accessType
         }
       />
     </SelectedUser>
   );
 }
+
+InvitedUser.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    accessType: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default InvitedUser;

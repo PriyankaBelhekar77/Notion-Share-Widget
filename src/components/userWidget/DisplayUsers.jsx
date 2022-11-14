@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { User } from '../../style/Style';
 import WadeAvtar from '../../icons/avtar/WadeAvtar';
@@ -18,5 +19,16 @@ function DisplayUsers({ users, handleUserOrGroupClick }) {
     </Box>
   );
 }
+
+DisplayUsers.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    type: PropTypes.string,
+    accessType: PropTypes.string,
+  })).isRequired,
+  handleUserOrGroupClick: PropTypes.func.isRequired,
+};
 
 export default DisplayUsers;

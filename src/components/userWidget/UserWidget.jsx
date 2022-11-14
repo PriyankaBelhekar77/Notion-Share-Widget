@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import QuestionMarkIcon from "../../icons/QuestionMarkIcon";
+/* eslint-disable no-nested-ternary */
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import QuestionMarkIcon from '../../icons/QuestionMarkIcon';
 import {
   UserWidgetStyle,
   UserWidgetHeader,
@@ -10,24 +12,36 @@ import {
   Links,
   InputBox,
   PillButton,
-} from "../../style/Style";
-import { users, groups } from "./users";
-import Dropdown from "../Dropdown";
-import DisplayUsers from "./DisplayUsers";
-import DisplayGroups from "./DisplayGroups";
+} from '../../style/Style';
+import { users, groups } from './users';
+import Dropdown from '../Dropdown';
+import DisplayUsers from './DisplayUsers';
+import DisplayGroups from './DisplayGroups';
 
-const KEY_ENTER = "Enter";
-const KEY_UP = "keyup";
+const KEY_ENTER = 'Enter';
+const KEY_UP = 'keyup';
 
 function UserWidget({ getInvitedUsersOrGrops }) {
   const searchRef = useRef(null);
   const [selectedGroupOrUser, setSelectedGroupOrUser] = useState([]);
-  const [searchUserOrGroup, setSearchUserOrGroup] = useState("");
-  const [accessRights, setAccessRights] = useState("Full access");
+  const [searchUserOrGroup, setSearchUserOrGroup] = useState('');
+  const [accessRights, setAccessRights] = useState('Full access');
   const [userFilterResult, setUserFilterResult] = useState([]);
   const [groupFilterResult, setGroupFilterResult] = useState([]);
 
-  const getAccessRights = (access_type) => setAccessRights(access_type);
+  const getAccessRights = (accessType) => setAccessRights(accessType);
+
+  const handleUserOrGroupClick = (user) => {
+    const addUserIndex = [...selectedGroupOrUser].findIndex(
+      (val) => val.id === user.id,
+    );
+    if (addUserIndex === -1) {
+      const updateUser = { ...user, accessType: accessRights };
+      setSelectedGroupOrUser([...selectedGroupOrUser, updateUser]);
+    }
+    setSearchUserOrGroup('');
+    searchRef.current.focus();
+  };
 
   useEffect(() => {
     const handleEnterKeyEvent = (event) => {
@@ -37,7 +51,7 @@ function UserWidget({ getInvitedUsersOrGrops }) {
         } else if (groupFilterResult.length) {
           handleUserOrGroupClick(groupFilterResult[0]);
         }
-        setSearchUserOrGroup("");
+        setSearchUserOrGroup('');
       }
     };
     document.addEventListener(KEY_UP, handleEnterKeyEvent);
@@ -47,30 +61,15 @@ function UserWidget({ getInvitedUsersOrGrops }) {
 
   const handlePillBtnClick = (user) => {
     const removeUser = [...selectedGroupOrUser].filter(
-      (val) => val.id !== user.id
+      (val) => val.id !== user.id,
     );
     setSelectedGroupOrUser(removeUser);
-  };
-
-  const handleUserOrGroupClick = (user) => {
-    const addUserIndex = [...selectedGroupOrUser].findIndex(
-      (val) => val.id === user.id
-    );
-    if (addUserIndex === -1) {
-      const updateUser = { ...user, access_type: accessRights };
-      setSelectedGroupOrUser([...selectedGroupOrUser, updateUser]);
-    }
-    setSearchUserOrGroup("");
-    searchRef.current.focus();
   };
 
   const handleInviteBtnClick = () => {
     if (selectedGroupOrUser.length) {
       const updateUserAccessRights = [...selectedGroupOrUser].map(
-        (selectedUser) => {
-          selectedUser.access_type = accessRights;
-          return selectedUser;
-        }
+        (selectedUser) => ({ ...selectedUser, accessType: accessRights }),
       );
       getInvitedUsersOrGrops(updateUserAccessRights);
     }
@@ -81,28 +80,28 @@ function UserWidget({ getInvitedUsersOrGrops }) {
   };
 
   useEffect(() => {
-    if (searchUserOrGroup === "") {
+    if (searchUserOrGroup === '') {
       setUserFilterResult([]);
       setGroupFilterResult([]);
     }
   }, [searchUserOrGroup]);
 
   useEffect(() => {
-    searchRef && searchRef.current.focus();
+    if (searchRef) {
+      searchRef.current.focus();
+    }
   }, []);
 
-  const handleInputKeyUp = (event) => {
-    if (searchUserOrGroup !== "") {
+  const handleInputKeyUp = () => {
+    if (searchUserOrGroup !== '') {
       const filterUser = [...users].filter(
-        (data) =>
-          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !==
-          -1
+        (data) => data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase())
+          !== -1,
       );
 
       const filterGroup = [...groups].filter(
-        (data) =>
-          data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase()) !==
-          -1
+        (data) => data.name.toLowerCase().indexOf(searchUserOrGroup.toLowerCase())
+          !== -1,
       );
       setUserFilterResult(filterUser);
       setGroupFilterResult(filterGroup);
@@ -113,14 +112,15 @@ function UserWidget({ getInvitedUsersOrGrops }) {
     <UserWidgetStyle>
       <UserWidgetHeader>
         <InputBox>
-          <Box sx={{ width: "60%" }}>
+          <Box sx={{ width: '60%' }}>
             {selectedGroupOrUser.length ? (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                {" "}
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {' '}
                 {selectedGroupOrUser.map((user) => (
                   <PillButton key={user.name + user.id}>
                     <span>{user.name}</span>
                     <button
+                      type="button"
                       onClick={() => handlePillBtnClick(user)}
                       className="close-btn"
                     >
@@ -134,7 +134,7 @@ function UserWidget({ getInvitedUsersOrGrops }) {
               ref={searchRef}
               className="textField"
               placeholder={
-                !searchUserOrGroup ? "Search people, emails or groups" : ""
+                !searchUserOrGroup ? 'Search people, emails or groups' : ''
               }
               value={searchUserOrGroup}
               onChange={handleInputChange}
@@ -144,8 +144,8 @@ function UserWidget({ getInvitedUsersOrGrops }) {
         </InputBox>
         <Box
           sx={{
-            display: "flex",
-            position: "absolute",
+            display: 'flex',
+            position: 'absolute',
             top: 10,
             right: 10,
             gap: 10,
@@ -167,7 +167,7 @@ function UserWidget({ getInvitedUsersOrGrops }) {
           </Box>
         </Box>
       </UserWidgetHeader>
-      <WidgetBody sx={{ padding: "10px" }}>
+      <WidgetBody sx={{ padding: '10px' }}>
         {userFilterResult.length || groupFilterResult.length ? (
           userFilterResult.length ? (
             <DisplayUsers
@@ -202,5 +202,9 @@ function UserWidget({ getInvitedUsersOrGrops }) {
     </UserWidgetStyle>
   );
 }
+
+UserWidget.propTypes = {
+  getInvitedUsersOrGrops: PropTypes.func.isRequired,
+};
 
 export default UserWidget;

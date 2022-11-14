@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function WadeAvtar(props) {
+function WadeAvtar() {
   return (
     <svg
       width={24}

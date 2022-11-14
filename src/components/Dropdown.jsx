@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -61,5 +62,10 @@ function Dropdown({ defaultAccessRight, getAccessRights }) {
     </Box>
   );
 }
+
+Dropdown.propTypes = {
+  defaultAccessRight: PropTypes.string.isRequired,
+  getAccessRights: PropTypes.func.isRequired,
+};
 
 export default Dropdown;

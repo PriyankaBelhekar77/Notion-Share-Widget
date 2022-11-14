@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
-export const ShareContainer = styled(Box)(({ theme }) => ({
+export const ShareContainer = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'row',
 }));
@@ -16,7 +16,7 @@ export const Container = styled(Box)(({ theme }) => ({
   gap: 8,
 }));
 
-export const Widget = styled(Box)(({ theme }) => ({
+export const Widget = styled(Box)(() => ({
   width: 512,
   minHeight: 262,
   height: 'maxContent',
@@ -29,7 +29,7 @@ export const Widget = styled(Box)(({ theme }) => ({
         0px 4px 6px -2px rgba(0, 0, 0, 0.05)`,
 }));
 
-export const UserWidgetStyle = styled(Widget)(({ theme }) => ({
+export const UserWidgetStyle = styled(Widget)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -39,7 +39,7 @@ export const UserWidgetStyle = styled(Widget)(({ theme }) => ({
   top: 0,
 }));
 
-export const WidgetHeader = styled(Box)(({ theme }) => ({
+export const WidgetHeader = styled(Box)(() => ({
   width: '100%',
   height: 80,
   borderBottom: '1px solid #e5e7eb',
@@ -49,17 +49,17 @@ export const WidgetHeader = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
 }));
 
-export const UserWidgetHeader = styled(WidgetHeader)(({ theme }) => ({
+export const UserWidgetHeader = styled(WidgetHeader)(() => ({
   height: 'max-content',
 }));
 
-export const WidgetBody = styled(Box)(({ theme }) => ({
+export const WidgetBody = styled(Box)(() => ({
   boxSizing: 'border-box',
   width: '100%',
   minHeight: 134,
 }));
 
-export const WidgetFooter = styled(Box)(({ theme }) => ({
+export const WidgetFooter = styled(Box)(() => ({
   width: '100%',
   height: 48,
   background: '#f9fafb',
@@ -118,7 +118,7 @@ export const InputBox = styled(Box)(({ theme }) => ({
   userSelect: 'none',
 }));
 
-export const InviteText = styled(Box)(({ theme }) => ({
+export const InviteText = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
@@ -131,7 +131,7 @@ export const InviteText = styled(Box)(({ theme }) => ({
   borderRadius: '0px 6px 6px 0px',
 }));
 
-export const InviteSubText = styled(Box)(({ theme }) => ({
+export const InviteSubText = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { User } from '../../style/Style';
 
@@ -17,5 +18,16 @@ function DisplayGroups({ groups, handleUserOrGroupClick }) {
     </Box>
   );
 }
+
+DisplayGroups.propTypes = {
+  groups: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    additional_info: PropTypes.string,
+    type: PropTypes.string,
+    accessType: PropTypes.string,
+  })).isRequired,
+  handleUserOrGroupClick: PropTypes.func.isRequired,
+};
 
 export default DisplayGroups;
